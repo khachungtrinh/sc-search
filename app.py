@@ -85,7 +85,7 @@ def creat_link(name, url):
     return '[{}]({})'.format(name, url)
 
 
-def md_thamkhao(sutta_id: str, sutta_name: str, the='online'):
+def md_thamkhao(sutta_id: str, sutta_name: str):
     sutta_name = sutta_id.upper() + ' -- ' + sutta_name
     sutta_id = sutta_id.lower()
     sutta_book = sutta_id.rstrip('0123456789 -.')
@@ -93,18 +93,12 @@ def md_thamkhao(sutta_id: str, sutta_name: str, the='online'):
     url_en = 'https://suttacentral.net/{}/en/sujato?lang=en&layout=sidebyside&reference=none&notes=asterisk&highlight=false&script=latin'.format(
         sutta_id)
     url_vi = 'https://suttacentral.net/{}/vi/minh_chau?lang=en&reference=none&highlight=false'.format(sutta_id)
-    url_app = 'http://localhost:8501/?sutta={}'.format(sutta_id)
-    if the == 'online':
-        url_the = 'https://thebuddhaswords.net/{}/{}.html#content'.format(sutta_book, sutta_id)
-    else:
-        url_the = '{}\\{}\\{}.html'.format('', sutta_book, sutta_id)
-        # st.html(url_the)
+    url_the = 'https://thebuddhaswords.net/{}/{}.html#content'.format(sutta_book, sutta_id)
     smarkdown('###### ' + sutta_name + '  (' +
               creat_link('all', url_all) + '; ' +
               creat_link('en', url_en) + '; ' +
               creat_link('vi', url_vi) + '; ' +
               creat_link('the', url_the) + '; ' +
-              creat_link('app', url_app) + '; ' +
               ')')
 
 
