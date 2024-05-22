@@ -143,7 +143,7 @@ def get_search(p, litmit=100, match_p='false'):
 @st.cache_data()
 def show_search(data, p, trans='true'):
     for i, name in enumerate(data):
-        st.writer('-----------------------------------')
+        st.write('-----------------------------------')
         if len(name['heading']['title']) > 0:
             sutta_id = name['uid']
             md_thamkhao(sutta_id, name['name'])
