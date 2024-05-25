@@ -197,7 +197,7 @@ if len(p) > 0:
     data_search, data_title, tongkq = get_search(p=p, litmit=limit_kq, match_p=match_p)
     d = find_in_nikaya(data_search)
     with c_s5:
-        st.text('thống kê {} hiển thị / tổng {} kết quả'.format(limit_kq, tongkq))
+        st.text('thống kê {} / tổng {} kết quả'.format(limit_kq, tongkq))
         st.text(d)
     if len(data_title) > 0:
         c_s5, c_s6 = st.columns([1, 3])
