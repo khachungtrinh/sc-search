@@ -180,11 +180,11 @@ def show_search(data, p, trans='true'):
             if check_acr is None:
                 try:
                     smarkdown(name['heading']['title'])
-                    for kq in name['highlight']['content']:
-                        smarkdown(kq)
                 except:
-                    for kq in name['highlight']['content']:
-                        smarkdown(kq)
+                    pass
+                for kq in name['highlight']['content']:
+                    kq_new = kq.replace("href='", "href='https://suttacentral.net")
+                    smarkdown(kq_new)
             else:
                 sutta_id = name['uid']
                 md_thamkhao(sutta_id, name['name'])
@@ -199,11 +199,8 @@ def show_search(data, p, trans='true'):
                         if name['lang'] == 'pli':
                             try:
                                 data_sutta_pali, data_sutta_en = get_sutta_sujato(sutta_id)
-                                # kq_pli = data_sutta_pali[id_line_sutta]
                                 kq_en = data_sutta_en[id_line_sutta]
                                 dem = find_in_sutta_num(p, data_sutta_pali.values())
-                                # st.text(kq_en)
-                                # st.text(kq_vi)
                                 if trans == 'true':
                                     kq_vi = GoogleTranslator(source='auto', target='vi').translate(kq_en)
                                     show_muti_lang(kq, kq_en, kq_vi)
