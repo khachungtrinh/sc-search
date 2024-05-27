@@ -249,9 +249,14 @@ def show_search(data, p, trans='true'):
             md_define(p_similar[0])
 
 
+try:
+    query_p = st.query_params.p
+except:
+    query_p = ''
+    
 c_s1, c_s2, c_s3, c_s4, c_s5 = st.columns([2, 1, 1, 1, 5])
 with c_s1:
-    p = st.text_input('search pali')
+    p = st.text_input('search pali', query_p)
 with c_s2:
     limit_kq = st.selectbox('limit', [20, 50, 100, 200, 500, 1000], index=1)
 with c_s3:
