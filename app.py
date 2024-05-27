@@ -171,7 +171,7 @@ def get_search(p, litmit=100, match_p='false'):
     return data_s, data_t, tongkq
 
 
-@st.cache_data()
+# @st.cache_data()
 def show_search(data, p, trans='true'):
     for i, name in enumerate(data):
         st.write('-----------------------------------')
