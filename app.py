@@ -210,7 +210,7 @@ def show_search(data, p, trans='true'):
                                 smarkdown(kq)
                         else:
                             try:
-                                if trans:
+                                if trans == 'true':
                                     kq_vi = GoogleTranslator(source='auto', target='vi').translate(kq)
                                     show_muti_lang(kq, kq_vi, '')
                                 else:
