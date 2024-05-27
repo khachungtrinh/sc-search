@@ -148,6 +148,20 @@ def get_pali_en(pali_word: str):
 
 
 @st.cache_data()
+def get_adjacent(pali_word):
+    url = 'https://suttacentral.net/api/dictionary_full/adjacent/{}'.format(pali_word)
+    data = get_url(url)
+    return data
+
+
+@st.cache_data()
+def get_similar(pali_word):
+    url = 'https://suttacentral.net/api/dictionary_full/similar/{}'.format(pali_word)
+    data = get_url(url)
+    return data
+
+
+@st.cache_data()
 def get_search(p, litmit=100, match_p='false'):
     url = 'https://suttacentral.net/api/search/instant?limit={}&query={}&language=en&restrict=all&matchpartial={}'.format(litmit, p, match_p)
     data = get_url(url)
