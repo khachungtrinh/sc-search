@@ -227,7 +227,12 @@ def show_search(data, p, trans='true'):
             dict_name = dict_a['dictname']
             smarkdown_none('(<b>{}</b>)'.format(dict_name))
             smarkdown_none(dict_a['grammar'])
-            smarkdown_none(dict_a['definition'])
+            dict_a_def = dict_a['definition']
+            if isinstance(dict_a_def, list):
+                for name__ in dict_a_def:
+                    smarkdown_none(name__)
+            else:
+                smarkdown_none(dict_a_def)
             smarkdown_none(dict_text_new)
 
             dict_full = get_pali_en(dict_a['word'])
