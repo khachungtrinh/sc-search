@@ -13,6 +13,22 @@ def smarkdown(oj):
     st.markdown(oj, unsafe_allow_html=True)
 
 
+def smarkdown_none(oj):
+    if oj is None:
+        pass
+    elif len(oj) == 0:
+        pass
+    else:
+        smarkdown(oj)
+
+
+def md_define(lw: list):
+    md = ''
+    for name in lw:
+        md = md + '[{}](https://suttacentral.net/define/{}?lang=en)'.format(name, name) + ', '
+    return smarkdown(md)
+
+
 def find_id_line(line_sutta: str):
     a = line_sutta.find('id="')
     b = line_sutta[a + 4:].find('"')
@@ -180,7 +196,36 @@ def show_search(data, p, trans='true'):
             dict_a = data[0]['highlight']['detail'][0]
             dict_text = dict_a['text']
             dict_text_new = dict_text.replace("href='/", "href='https://suttacentral.net/")
-            smarkdown(dict_text_new)
+            dict_name = dict_a['dictname']
+            smarkdown_none('(<b>{}</b>)'.format(dict_name))
+            smarkdown_none(dict_a['grammar'])
+            smarkdown_none(dict_a['definition'])
+            smarkdown_none(dict_text_new)
+
+            dict_full = get_pali_en(dict_a['word'])
+
+            for name_ in dict_full:
+                st.write('-----------------------------------')
+                if name_['dictname'] == dict_name:
+                    pass
+                else:
+                    smarkdown_none('(<b>{}</b>)'.format(name_['dictname']))
+                    smarkdown_none(name_['grammar'])
+                    dict_def = name_['definition']
+                    if isinstance(dict_def, list):
+                        for name__ in dict_def:
+                            smarkdown_none(name__)
+                    else:
+                        smarkdown_none(dict_def)
+                    smarkdown_none(name_['text'])
+
+            p_adjacent = get_adjacent(p)
+            smarkdown_none('(<b>adjacent terms</b>)')
+            md_define(p_adjacent[0])
+            st.write('-----------------------------------')
+            p_similar = get_similar(p)
+            smarkdown_none('(<b>similar spelling</b>)')
+            md_define(p_similar[0])
 
 
 c_s1, c_s2, c_s3, c_s4, c_s5 = st.columns([2, 1, 1, 1, 5])
