@@ -175,45 +175,55 @@ def get_search(p, litmit=100, match_p='false'):
 def show_search(data, p, trans='true'):
     for i, name in enumerate(data):
         st.write('-----------------------------------')
-        if len(name['heading']['title']) > 0:
-            sutta_id = name['uid']
-            md_thamkhao(sutta_id, name['name'])
-
-            dem = 0
-            for kq in name['highlight']['content']:
-                id_line = find_id_line(kq)
-                id_line_sutta = sutta_id + ':' + id_line
-                if '-' in id_line_sutta:
-                    pass
-                else:
-                    if name['lang'] == 'pli':
-                        try:
-                            data_sutta_pali, data_sutta_en = get_sutta_sujato(sutta_id)
-                            # kq_pli = data_sutta_pali[id_line_sutta]
-                            kq_en = data_sutta_en[id_line_sutta]
-                            dem = find_in_sutta_num(p, data_sutta_pali.values())
-                            # st.text(kq_en)
-                            # st.text(kq_vi)
-                            if trans == 'true':
-                                kq_vi = GoogleTranslator(source='auto', target='vi').translate(kq_en)
-                                show_muti_lang(kq, kq_en, kq_vi)
-                            else:
-                                show_muti_lang(kq, kq_en, '')
-                        except:
-                            smarkdown(kq)
+        try:
+            check_acr = name['acronym']
+            if check_acr is None:
+                try:
+                    smarkdown(name['heading']['title'])
+                    for kq in name['highlight']['content']:
+                        smarkdown(kq)
+                except:
+                    for kq in name['highlight']['content']:
+                        smarkdown(kq)
+            else:
+                sutta_id = name['uid']
+                md_thamkhao(sutta_id, name['name'])
+    
+                dem = 0
+                for kq in name['highlight']['content']:
+                    id_line = find_id_line(kq)
+                    id_line_sutta = sutta_id + ':' + id_line
+                    if '-' in id_line_sutta:
+                        pass
                     else:
-                        try:
-                            if trans:
-                                kq_vi = GoogleTranslator(source='auto', target='vi').translate(kq)
-                                show_muti_lang(kq, kq_vi, '')
-                            else:
-                                show_muti_lang(kq, '', '')
-                        except:
-                            smarkdown(kq)
-
-            if dem > 1:
-                st.text('{} lần'.format(dem))
-        else:
+                        if name['lang'] == 'pli':
+                            try:
+                                data_sutta_pali, data_sutta_en = get_sutta_sujato(sutta_id)
+                                # kq_pli = data_sutta_pali[id_line_sutta]
+                                kq_en = data_sutta_en[id_line_sutta]
+                                dem = find_in_sutta_num(p, data_sutta_pali.values())
+                                # st.text(kq_en)
+                                # st.text(kq_vi)
+                                if trans == 'true':
+                                    kq_vi = GoogleTranslator(source='auto', target='vi').translate(kq_en)
+                                    show_muti_lang(kq, kq_en, kq_vi)
+                                else:
+                                    show_muti_lang(kq, kq_en, '')
+                            except:
+                                smarkdown(kq)
+                        else:
+                            try:
+                                if trans:
+                                    kq_vi = GoogleTranslator(source='auto', target='vi').translate(kq)
+                                    show_muti_lang(kq, kq_vi, '')
+                                else:
+                                    show_muti_lang(kq, '', '')
+                            except:
+                                smarkdown(kq)
+    
+                if dem > 1:
+                    st.text('{} lần'.format(dem))
+        except:
             dict_a = data[0]['highlight']['detail'][0]
             dict_text = dict_a['text']
             dict_text_new = dict_text.replace("href='/", "href='https://suttacentral.net/")
