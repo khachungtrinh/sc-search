@@ -207,9 +207,9 @@ def show_search(data_s, data_t, p, trans='true', blurb='false'):
                     smarkdown(kq_new)
             else:
                 sutta_id = name['uid']
-                data_plex = get_sutta_info(sutta_id)
-                data_blurb = '<i>{}</i>'.format(data_plex['blurb'])
                 if blurb == 'true':
+                    data_plex = get_sutta_info(sutta_id)
+                    data_blurb = '<i>{}</i>'.format(data_plex['blurb'])
                     show_sutta_blurb(sutta_id, name['name'], data_blurb)
                 else:
                     md_thamkhao(sutta_id, name['name'])
