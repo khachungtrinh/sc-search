@@ -132,6 +132,13 @@ def get_sutta_sujato(sutta):
 
 
 @st.cache_data()
+def get_sutta_info(sutta: str):
+    url = 'https://suttacentral.net/api/suttas/{}/sujato?lang=en&siteLanguage=en'.format(sutta)
+    data = get_url(url)
+    return data['suttaplex']
+    
+
+@st.cache_data()
 def get_pali_en(pali_word: str):
     url = 'https://suttacentral.net/api/dictionary_full/{}?language=en'.format(pali_word)
     data = get_url(url)
@@ -200,8 +207,10 @@ def show_search(data_s, data_t, p, trans='true'):
                     smarkdown(kq_new)
             else:
                 sutta_id = name['uid']
-                md_thamkhao(sutta_id, name['name'])
-    
+                # md_thamkhao(sutta_id, name['name'])
+                data_plex = get_sutta_info(sutta_id)
+                show_sutta_blurb(sutta_id, name['name'], data_plex['blurb'])
+                
                 dem = 0
                 for kq in name['highlight']['content']:
                     id_line = find_id_line(kq)
