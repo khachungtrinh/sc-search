@@ -92,7 +92,7 @@ def smarkdown_none(oj):
         pass
     else:
         oj_new = oj.replace('None', '')
-        smarkdown(oj)
+        smarkdown(oj_new)
 
 
 def md_define(lw: list):
