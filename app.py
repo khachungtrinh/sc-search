@@ -209,7 +209,8 @@ def show_search(data_s, data_t, p, trans='true'):
                 sutta_id = name['uid']
                 # md_thamkhao(sutta_id, name['name'])
                 data_plex = get_sutta_info(sutta_id)
-                show_sutta_blurb(sutta_id, name['name'], data_plex['blurb'])
+                data_blurb = '<sub>{}</sub>'.format(data_plex)
+                show_sutta_blurb(sutta_id, name['name'], data_blurb)
                 
                 dem = 0
                 for kq in name['highlight']['content']:
