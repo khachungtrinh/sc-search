@@ -180,12 +180,12 @@ def show_sutta_blurb(uid, o_title, blurb):
         
 
 @st.cache_data()
-def show_search(data, data_t, p, trans='true'):
+def show_search(data_s, data_t, p, trans='true'):
     if len(data_t) > 0:
         for name in data_t:
             st.write('-----------------------------------')
             show_sutta_blurb(name['uid'], name['original_title'], name['blurb'])
-    for i, name in enumerate(data):
+    for i, name in enumerate(data_s):
         st.write('-----------------------------------')
         try:
             check_acr = name['acronym']
@@ -233,7 +233,7 @@ def show_search(data, data_t, p, trans='true'):
                 if dem > 1:
                     st.text('{} lần'.format(dem))
         except:
-            dict_a = data[0]['highlight']['detail'][0]
+            dict_a = data_s[0]['highlight']['detail'][0]
             dict_text = dict_a['text']
             dict_text_new = dict_text.replace("href='/", "href='https://suttacentral.net/")
             dict_name = dict_a['dictname']
