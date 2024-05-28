@@ -111,12 +111,13 @@ def md_thamkhao(sutta_id: str, sutta_name: str):
         sutta_id)
     url_vi = 'https://suttacentral.net/{}/vi/minh_chau?lang=en&reference=none&highlight=false'.format(sutta_id)
     url_the = 'https://thebuddhaswords.net/{}/{}.html#content'.format(sutta_book, sutta_id)
-    smarkdown('###### ' + sutta_name + '  (' +
+    smarkdown('###### ' + sutta_name + '  <sub>(' +
               creat_link('all', url_all) + '- ' +
               creat_link('en', url_en) + '- ' +
               creat_link('vi', url_vi) + '- ' +
               creat_link('the', url_the) +
-              ')')
+              ')</sub>'
+             )
 
 
 def get_url(url):
