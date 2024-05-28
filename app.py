@@ -285,6 +285,7 @@ if len(p) > 0:
     if len(data_title) > 0:
         c_s5, c_s6 = st.columns([1, 3])
         for name in data_title:
+            st.write('-----------------------------------')
             with c_s5:
                 md_thamkhao(name['uid'], name['original_title'])
             with c_s6:
