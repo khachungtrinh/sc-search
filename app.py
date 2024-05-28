@@ -118,16 +118,6 @@ def md_thamkhao(sutta_id: str, sutta_name: str):
               ')')
 
 
-def show_muti_lang(lang1, lang2, lang3):
-    c_l1, c_l2, c_l3 = st.columns([1, 1, 1])
-    with c_l1:
-        smarkdown(lang1)
-    with c_l2:
-        smarkdown(lang2)
-    with c_l3:
-        smarkdown(lang3)
-
-
 def get_url(url):
     res = requests.get(url)
     return res.json()
@@ -170,6 +160,24 @@ def get_search(p, litmit=100, match_p='false'):
     tongkq = data['total']
     return data_s, data_t, tongkq
 
+
+def show_muti_lang(lang1, lang2, lang3):
+    c_l1, c_l2, c_l3 = st.columns([1, 1, 1])
+    with c_l1:
+        smarkdown(lang1)
+    with c_l2:
+        smarkdown(lang2)
+    with c_l3:
+        smarkdown(lang3)
+
+
+def show_sutta_blurb(uid, o_title, blurb):
+    c_l4, c_s5 = st.columns([1, 2])
+    with c_l4:
+        md_thamkhao(uid, o_title)
+    with c_l5:
+        st.write(blurb)
+        
 
 @st.cache_data()
 def show_search(data, p, trans='true'):
@@ -283,12 +291,9 @@ if len(p) > 0:
         st.text('thống kê {} / tổng {} kết quả'.format(limit_kq, tongkq))
         st.text(d)
     if len(data_title) > 0:
-        st.write('-----------------------------------')
-        c_s5, c_s6 = st.columns([1, 3])
         for name in data_title:
-            with c_s5:
-                md_thamkhao(name['uid'], name['original_title'])
-            with c_s6:
-                st.write(name['blurb'])
+        st.write('-----------------------------------')
+        show_sutta_blurb(name['uid'], name['original_title'], name['blurb'])
+
     show_search(data_search, p, trans=to_vi)
 
