@@ -263,7 +263,7 @@ def show_search(data_s, data_t, p, trans='true', blurb='false'):
             dict_full = get_pali_en(dict_a['word'])
 
             for name_ in dict_full:
-                st.write('-----------------------------------')
+                # st.write('-----------------------------------')
                 if name_['dictname'] == dict_name:
                     pass
                 else:
@@ -280,7 +280,7 @@ def show_search(data_s, data_t, p, trans='true', blurb='false'):
             p_adjacent = get_adjacent(p)
             smarkdown_none(':green-background[<b>adjacent terms</b>]')
             md_define(p_adjacent[0])
-            st.write('-----------------------------------')
+            # st.write('-----------------------------------')
             p_similar = get_similar(p)
             smarkdown_none(':green-background[<b>similar spelling</b>]')
             md_define(p_similar[0])
