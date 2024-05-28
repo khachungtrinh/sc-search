@@ -91,6 +91,7 @@ def smarkdown_none(oj):
     elif len(oj) == 0:
         pass
     else:
+        oj_new = oj.replace('None', '')
         smarkdown(oj)
 
 
