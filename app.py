@@ -292,8 +292,8 @@ if len(p) > 0:
         st.text(d)
     if len(data_title) > 0:
         for name in data_title:
-        st.write('-----------------------------------')
-        show_sutta_blurb(name['uid'], name['original_title'], name['blurb'])
+            st.write('-----------------------------------')
+            show_sutta_blurb(name['uid'], name['original_title'], name['blurb'])
 
     show_search(data_search, p, trans=to_vi)
 
