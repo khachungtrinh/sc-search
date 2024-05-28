@@ -300,7 +300,7 @@ with c_s3:
     match_p = st.selectbox('matchpartial', ['false', 'true'])
 with c_s4:
     to_vi = st.selectbox('vitrans', ['false', 'true'])
-with c_s6:
+with c_s5:
     blurb = st.selectbox('blurb', ['false', 'true'])
 if len(p) > 0:
     data_search, data_title, tongkq = get_search(p=p, litmit=limit_kq, match_p=match_p)
