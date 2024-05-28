@@ -250,7 +250,7 @@ def show_search(data_s, data_t, p, trans='true', blurb='false'):
             dict_text = dict_a['text']
             dict_text_new = dict_text.replace("href='/", "href='https://suttacentral.net/")
             dict_name = dict_a['dictname']
-            smarkdown_none('(<b>{}</b>)'.format(dict_name))
+            smarkdown_none(':green-background[<b>{}</b>]'.format(dict_name))
             smarkdown_none('<i>grammar</i>:  {}'.format(dict_a['grammar']))
             dict_a_def = dict_a['definition']
             if isinstance(dict_a_def, list):
@@ -267,7 +267,7 @@ def show_search(data_s, data_t, p, trans='true', blurb='false'):
                 if name_['dictname'] == dict_name:
                     pass
                 else:
-                    smarkdown_none('(<b>{}</b>)'.format(name_['dictname']))
+                    smarkdown_none(':green-background[<b>{}</b>]'.format(name_['dictname']))
                     smarkdown_none('<i><sub>grammar</sub></i>:  {}'.format(dict_a['grammar']))
                     dict_def = name_['definition']
                     if isinstance(dict_def, list):
