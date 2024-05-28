@@ -9,26 +9,6 @@ st.set_page_config(
     layout="wide")
 
 
-def smarkdown(oj):
-    st.markdown(oj, unsafe_allow_html=True)
-
-
-def smarkdown_none(oj):
-    if oj is None:
-        pass
-    elif len(oj) == 0:
-        pass
-    else:
-        smarkdown(oj)
-
-
-def md_define(lw: list):
-    md = ''
-    for name in lw:
-        md = md + '[{}](https://suttacentral.net/define/{}?lang=en)'.format(name, name) + ', '
-    return smarkdown(md)
-
-
 def find_id_line(line_sutta: str):
     a = line_sutta.find('id="')
     b = line_sutta[a + 4:].find('"')
@@ -99,6 +79,26 @@ def find_in_nikaya(data: list):
 
 def creat_link(name, url):
     return '[{}]({})'.format(name, url)
+
+
+def smarkdown(oj):
+    st.markdown(oj, unsafe_allow_html=True)
+
+
+def smarkdown_none(oj):
+    if oj is None:
+        pass
+    elif len(oj) == 0:
+        pass
+    else:
+        smarkdown(oj)
+
+
+def md_define(lw: list):
+    md = ''
+    for name in lw:
+        md = md + '[{}](https://suttacentral.net/define/{}?lang=en)'.format(name, name) + ', '
+    return smarkdown(md)
 
 
 def md_thamkhao(sutta_id: str, sutta_name: str):
