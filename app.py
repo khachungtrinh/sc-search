@@ -239,7 +239,7 @@ def show_search(data_s, data_t, p, trans='true'):
             dict_text_new = dict_text.replace("href='/", "href='https://suttacentral.net/")
             dict_name = dict_a['dictname']
             smarkdown_none('(<b>{}</b>)'.format(dict_name))
-            smarkdown_none(dict_a['grammar'])
+            smarkdown_none('<i>grammar</i>:  {}'.format(dict_a['grammar']))
             dict_a_def = dict_a['definition']
             if isinstance(dict_a_def, list):
                 for name__ in dict_a_def:
