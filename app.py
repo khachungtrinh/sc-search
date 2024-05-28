@@ -180,7 +180,11 @@ def show_sutta_blurb(uid, o_title, blurb):
         
 
 @st.cache_data()
-def show_search(data, p, trans='true'):
+def show_search(data, data_t, p, trans='true'):
+    if len(data_t) > 0:
+        for name in data_t:
+            st.write('-----------------------------------')
+            show_sutta_blurb(name['uid'], name['original_title'], name['blurb'])
     for i, name in enumerate(data):
         st.write('-----------------------------------')
         try:
@@ -290,10 +294,10 @@ if len(p) > 0:
     with c_s5:
         st.text('thống kê {} / tổng {} kết quả'.format(limit_kq, tongkq))
         st.text(d)
-    if len(data_title) > 0:
-        for name in data_title:
-            st.write('-----------------------------------')
-            show_sutta_blurb(name['uid'], name['original_title'], name['blurb'])
+    # if len(data_title) > 0:
+    #     for name in data_title:
+    #         st.write('-----------------------------------')
+    #         show_sutta_blurb(name['uid'], name['original_title'], name['blurb'])
 
-    show_search(data_search, p, trans=to_vi)
+    show_search(data_search, data_title, p, trans=to_vi)
 
