@@ -283,8 +283,8 @@ if len(p) > 0:
         st.text('thống kê {} / tổng {} kết quả'.format(limit_kq, tongkq))
         st.text(d)
     if len(data_title) > 0:
-        c_s5, c_s6 = st.columns([1, 3])
         st.write('-----------------------------------')
+        c_s5, c_s6 = st.columns([1, 3])
         for name in data_title:
             with c_s5:
                 md_thamkhao(name['uid'], name['original_title'])
