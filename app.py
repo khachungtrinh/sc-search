@@ -176,7 +176,7 @@ def show_sutta_blurb(uid, o_title, blurb):
     with c_l4:
         md_thamkhao(uid, o_title)
     with c_l5:
-        st.write(blurb)
+        smarkdown_none(blurb)
         
 
 @st.cache_data()
