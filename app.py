@@ -278,11 +278,11 @@ def show_search(data_s, data_t, p, trans='true', blurb='false'):
                     smarkdown_none(name_['text'])
 
             p_adjacent = get_adjacent(p)
-            smarkdown_none('(<b>adjacent terms</b>)')
+            smarkdown_none(':green-background[<b>adjacent terms</b>]')
             md_define(p_adjacent[0])
             st.write('-----------------------------------')
             p_similar = get_similar(p)
-            smarkdown_none('(<b>similar spelling</b>)')
+            smarkdown_none(':green-background[<b>similar spelling</b>]')
             md_define(p_similar[0])
 
 
