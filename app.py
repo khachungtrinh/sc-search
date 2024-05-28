@@ -255,7 +255,7 @@ def show_search(data_s, data_t, p, trans='true'):
                     pass
                 else:
                     smarkdown_none('(<b>{}</b>)'.format(name_['dictname']))
-                    smarkdown_none('<i>grammar</i>:  {}'.format(dict_a['grammar']))
+                    smarkdown_none('<i><sub>grammar</sub></i>:  {}'.format(dict_a['grammar']))
                     dict_def = name_['definition']
                     if isinstance(dict_def, list):
                         for name__ in dict_def:
