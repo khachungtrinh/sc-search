@@ -115,7 +115,7 @@ def md_thamkhao(sutta_id: str, sutta_name: str):
               creat_link('all', url_all) + '; ' +
               creat_link('en', url_en) + '; ' +
               creat_link('vi', url_vi) + '; ' +
-              creat_link('the', url_the) + '; ' +
+              creat_link('the', url_the) +
               ')')
 
 
