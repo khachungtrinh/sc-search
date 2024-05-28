@@ -188,7 +188,7 @@ def show_sutta_blurb(uid, o_title, blurb):
         
 
 @st.cache_data()
-def show_search(data_s, data_t, p, trans='true'):
+def show_search(data_s, data_t, p, trans='true', blurb='false'):
     if len(data_t) > 0:
         for name in data_t:
             st.write('-----------------------------------')
@@ -207,10 +207,12 @@ def show_search(data_s, data_t, p, trans='true'):
                     smarkdown(kq_new)
             else:
                 sutta_id = name['uid']
-                # md_thamkhao(sutta_id, name['name'])
                 data_plex = get_sutta_info(sutta_id)
                 data_blurb = '<i>{}</i>'.format(data_plex['blurb'])
-                show_sutta_blurb(sutta_id, name['name'], data_blurb)
+                if blurb == 'true':
+                    show_sutta_blurb(sutta_id, name['name'], data_blurb)
+                else:
+                    md_thamkhao(sutta_id, name['name'])
                 
                 dem = 0
                 for kq in name['highlight']['content']:
@@ -289,7 +291,7 @@ try:
 except:
     query_p = ''
     
-c_s1, c_s2, c_s3, c_s4, c_s5 = st.columns([2, 1, 1, 1, 5])
+c_s1, c_s2, c_s3, c_s4, c_s5 = st.columns([2, 1, 1, 1, 1, 6])
 with c_s1:
     p = st.text_input('search pali', query_p)
 with c_s2:
@@ -298,12 +300,13 @@ with c_s3:
     match_p = st.selectbox('matchpartial', ['false', 'true'])
 with c_s4:
     to_vi = st.selectbox('vitrans', ['false', 'true'])
-
+with c_s6:
+    blurb = st.selectbox('blurb', ['false', 'true'])
 if len(p) > 0:
     data_search, data_title, tongkq = get_search(p=p, litmit=limit_kq, match_p=match_p)
     d = find_in_nikaya(data_search)
-    with c_s5:
+    with c_s6:
         st.text('thống kê {} / tổng {} kết quả'.format(limit_kq, tongkq))
         st.text(d)
-    show_search(data_search, data_title, p, trans=to_vi)
+    show_search(data_search, data_title, p, trans=to_vi, blurb=blurb)
 
