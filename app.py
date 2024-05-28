@@ -172,7 +172,7 @@ def show_muti_lang(lang1, lang2, lang3):
 
 
 def show_sutta_blurb(uid, o_title, blurb):
-    c_l4, c_s5 = st.columns([1, 2])
+    c_l4, c_l5 = st.columns([1, 2])
     with c_l4:
         md_thamkhao(uid, o_title)
     with c_l5:
