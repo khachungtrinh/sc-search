@@ -107,7 +107,7 @@ def md_thamkhao(sutta_id: str, sutta_name: str):
     sutta_id = sutta_id.lower()
     sutta_book = sutta_id.rstrip('0123456789 -.')
     url_all = 'https://suttacentral.net/{}?view=normal&lang=en'.format(sutta_id)
-    url_en = 'https://suttacentral.net/{}/en/sujato?lang=en&layout=sidebyside&reference=none&notes=asterisk&highlight=false&script=latin'.format(
+    url_en = 'https://suttacentral.net/{}/en/sujato?lang=en&layout=sidebyside&reference=main&notes=asterisk&highlight=false&script=latin'.format(
         sutta_id)
     url_vi = 'https://suttacentral.net/{}/vi/minh_chau?lang=en&reference=none&highlight=false'.format(sutta_id)
     url_the = 'https://thebuddhaswords.net/{}/{}.html#content'.format(sutta_book, sutta_id)
