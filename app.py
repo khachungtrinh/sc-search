@@ -203,8 +203,8 @@ def show_search(data_s, data_t, p, trans='true', blurb='false'):
                     smarkdown(name['heading']['title'])
                 except:
                     pass
-                for kq in name['highlight']['content']:
-                    kq = kq.replace("href='", "href='https://suttacentral.net")
+                for kq_ in name['highlight']['content']:
+                    kq = kq_.replace("href='", "href='https://suttacentral.net")
                     smarkdown(kq)
             else:
                 sutta_id = name['uid']
@@ -216,8 +216,8 @@ def show_search(data_s, data_t, p, trans='true', blurb='false'):
                     md_thamkhao(sutta_id, name['name'])
                 
                 dem = 0
-                for kq in name['highlight']['content']:
-                    kq = kq.replace("href='", "href='https://suttacentral.net")
+                for kq_ in name['highlight']['content']:
+                    kq = kq_.replace("href='", "href='https://suttacentral.net")
                     id_line = find_id_line(kq)
                     id_line_sutta = sutta_id + ':' + id_line
                     if '-' in id_line_sutta:
