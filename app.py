@@ -204,8 +204,8 @@ def show_search(data_s, data_t, p, trans='true', blurb='false'):
                 except:
                     pass
                 for kq in name['highlight']['content']:
-                    kq_new = kq.replace("href='", "href='https://suttacentral.net")
-                    smarkdown(kq_new)
+                    kq = kq.replace("href='", "href='https://suttacentral.net")
+                    smarkdown(kq)
             else:
                 sutta_id = name['uid']
                 if blurb == 'true':
@@ -217,6 +217,7 @@ def show_search(data_s, data_t, p, trans='true', blurb='false'):
                 
                 dem = 0
                 for kq in name['highlight']['content']:
+                    kq = kq.replace("href='", "href='https://suttacentral.net")
                     id_line = find_id_line(kq)
                     id_line_sutta = sutta_id + ':' + id_line
                     if '-' in id_line_sutta:
