@@ -314,7 +314,10 @@ if len(p) > 0:
     data_search, data_title, tongkq = get_search(p=p, litmit=limit_kq, match_p=match_p)
     d = find_in_nikaya(data_search)
     with c_s6:
-        st.text('thống kê {} / tổng {} kết quả'.format(limit_kq, tongkq))
+        if int(tongkq) > int(limit_kq):
+            st.text('thống kê {} / tổng {} kết quả'.format(limit_kq, tongkq))
+        else:
+            st.text('thống kê {} / tổng {} kết quả'.format(tongkq, tongkq))
         st.text(d)
     show_search(data_search, data_title, p, trans=to_vi, blurb=blurb)
 
