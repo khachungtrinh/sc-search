@@ -123,6 +123,7 @@ def md_thamkhao(sutta_id: str, sutta_name: str):
 def site_change(data: str):
     data = data.replace("href='", "href='https://suttacentral.net")
     data = data.replace('href=\"', 'href="https://suttacentral.net')
+    return data
     
 
 def get_url(url):
@@ -209,7 +210,7 @@ def show_search(data_s, data_t, p, trans='true', blurb='false'):
                 except:
                     pass
                 for kq in name['highlight']['content']:
-                    site_change(kq)
+                    kq = site_change(kq)
                     smarkdown(kq)
             else:
                 sutta_id = name['uid']
@@ -222,7 +223,7 @@ def show_search(data_s, data_t, p, trans='true', blurb='false'):
                 
                 dem = 0
                 for kq in name['highlight']['content']:
-                    site_change(kq)
+                    kq = site_change(kq)
                     id_line = find_id_line(kq)
                     id_line_sutta = sutta_id + ':' + id_line
                     if '-' in id_line_sutta:
