@@ -120,6 +120,11 @@ def md_thamkhao(sutta_id: str, sutta_name: str):
              )
 
 
+def site_change(data: str):
+    data = data.replace("href='", "href='https://suttacentral.net")
+    data = data.replace('href=\"', 'href="https://suttacentral.net')
+    
+
 def get_url(url):
     res = requests.get(url)
     return res.json()
@@ -203,9 +208,8 @@ def show_search(data_s, data_t, p, trans='true', blurb='false'):
                     smarkdown(name['heading']['title'])
                 except:
                     pass
-                for kq_ in name['highlight']['content']:
-                    kq = kq_.replace("href='", "href='https://suttacentral.net")
-                    kq = kq_.replace('href=\"', 'href="https://suttacentral.net')
+                for kq in name['highlight']['content']:
+                    site_change(kq)
                     smarkdown(kq)
             else:
                 sutta_id = name['uid']
@@ -217,9 +221,8 @@ def show_search(data_s, data_t, p, trans='true', blurb='false'):
                     md_thamkhao(sutta_id, name['name'])
                 
                 dem = 0
-                for kq_ in name['highlight']['content']:
-                    kq = kq_.replace("href='", "href='https://suttacentral.net")
-                    kq = kq_.replace('href=\"', 'href="https://suttacentral.net')
+                for kq in name['highlight']['content']:
+                    site_change(kq)
                     id_line = find_id_line(kq)
                     id_line_sutta = sutta_id + ':' + id_line
                     if '-' in id_line_sutta:
@@ -252,7 +255,7 @@ def show_search(data_s, data_t, p, trans='true', blurb='false'):
         except:
             dict_a = data_s[0]['highlight']['detail'][0]
             dict_text = dict_a['text']
-            dict_text_new = dict_text.replace("href='/", "href='https://suttacentral.net/")
+            dict_text_new = site_change(dict_text)
             dict_name = dict_a['dictname']
             smarkdown_none(':green-background[<b>{}</b>]'.format(dict_name))
             smarkdown_none('<i><sub>grammar</sub></i>:  {}'.format(dict_a['grammar']))
