@@ -107,7 +107,7 @@ def md_thamkhao(sutta_id: str, sutta_name: str):
     sutta_id = sutta_id.lower()
     sutta_book = sutta_id.rstrip('0123456789 -.')
     url_all = 'https://suttacentral.net/{}?view=normal&lang=en'.format(sutta_id)
-    url_en = 'https://suttacentral.net/{}/en/sujato?lang=en&layout=sidebyside&reference=main&notes=asterisk&highlight=false&script=latin'.format(
+    url_en = 'https://suttacentral.net/{}/en/sujato?lang=en&layout=sidebyside&reference=none&notes=asterisk&highlight=false&script=latin'.format(
         sutta_id)
     url_vi = 'https://suttacentral.net/{}/vi/minh_chau?lang=en&reference=none&highlight=false'.format(sutta_id)
     url_the = 'https://thebuddhaswords.net/{}/{}.html#content'.format(sutta_book, sutta_id)
@@ -118,6 +118,13 @@ def md_thamkhao(sutta_id: str, sutta_name: str):
               creat_link('main', url_all) + 
               '</sub>'
              )
+
+def gen_link_search(p):
+    url_dc = 'https://discourse.suttacentral.net/search?q={}&page=1'.format(p)
+    url_ss = 'https://suttacentral.net/search?query={}'.format(p)
+    url_sd = 'https://suttacentral.net/define/{}?lang=en'.format(p)
+    url = '{}, {}, {}'.format(creat_link('search', url_ss), creat_link('define', url_sd), creat_link('discourse', url_dc))
+    smarkdown(url)
 
 
 def site_change(data: str):
@@ -196,6 +203,8 @@ def show_sutta_blurb(uid, o_title, blurb):
 
 @st.cache_data()
 def show_search(data_s, data_t, p, trans='true', blurb='false'):
+    gen_link_search(p)
+    st.write('-----------------------------------')
     if len(data_t) > 0:
         for name in data_t:
             st.write('-----------------------------------')
