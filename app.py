@@ -203,8 +203,8 @@ def show_sutta_blurb(uid, o_title, blurb):
 
 @st.cache_data()
 def show_search(data_s, data_t, p, trans='true', blurb='false'):
-    gen_link_search(p)
     st.write('-----------------------------------')
+    gen_link_search(p)
     if len(data_t) > 0:
         for name in data_t:
             st.write('-----------------------------------')
