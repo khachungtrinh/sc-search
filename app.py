@@ -307,6 +307,9 @@ try:
     query_p = st.query_params.p
 except:
     query_p = ''
+
+if st.button("Clear All"):
+    st.cache_data.clear()
     
 c_s1, c_s2, c_s3, c_s4, c_s5, c_s6 = st.columns([2, 1, 1, 1, 1, 6])
 with c_s1:
